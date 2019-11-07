@@ -104,6 +104,10 @@ podTemplate(label: "develop-maven-${env.BUILD_NUMBER}", name: "develop-maven-${e
             }
         }
 
+        //===== deploy on dev =====
+        //Please confirm to continue the deployment on Dev
+        prepareOtherStages.confirmStage("Please confirm to continue the deployment on Dev").call()
+
         //check postgresql-backup space, it needs to be less than 80% full, otherwise pipeline will be pending for cleanup
         prepareOtherStages.checkBackupSpace("mem-tfrs-dev").call()
 
